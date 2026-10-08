@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  event: string;
+  presentationUrl?: string;
+  youtubeUrl?: string;
+}
+
+const { title, event, presentationUrl, youtubeUrl } = Astro.props;
+---
+<article class="entry">
+  <h3>{title}</h3>
+  <div class="entry-meta">
+    <p class="meta">{event}</p>
+    {presentationUrl && <a class="recording" href={presentationUrl} aria-label={`Slides: ${title}`}>Slides</a>}
+    {youtubeUrl && <a class="recording" href={youtubeUrl} aria-label={`Watch on YouTube: ${title}`}>YouTube</a>}
+  </div>
+</article>

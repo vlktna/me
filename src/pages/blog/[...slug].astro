@@ -1,0 +1,31 @@
+---
+import { render } from 'astro:content';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { formatDate, getPosts, isPublished, type Post } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map(post => ({ params: { slug: post.id }, props: { post } }));
+}
+
+interface Props { post: Post }
+const { post } = Astro.props;
+const { Content } = await render(post);
+const unpublished = !isPublished(post);
+---
+<SiteLayout title={`${post.data.title} — Veronika Volokitina`} description={post.data.description} lang={post.data.lang} article unpublished={unpublished}>
+  <Fragment slot="head">
+    <meta property="article:published_time" content={post.data.pubDate.toISOString()} />
+    {post.data.updatedDate && <meta property="article:modified_time" content={post.data.updatedDate.toISOString()} />}
+  </Fragment>
+  <article class="post">
+    <header class="post-heading">
+      <a class="back-link" href="/blog/" lang="en">All posts</a>
+      {unpublished && <p class="draft-notice" lang="en">{post.data.draft ? 'Draft' : 'Unpublished'} · Local preview only</p>}
+      <h1>{post.data.title}</h1>
+      <p class="meta"><time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, post.data.lang)}</time> · Veronika Volokitina</p>
+      {post.data.updatedDate && <p class="meta">{post.data.lang === 'ru' ? 'Обновлено' : 'Updated'} <time datetime={post.data.updatedDate.toISOString()}>{formatDate(post.data.updatedDate, post.data.lang)}</time></p>}
+    </header>
+    <div class="prose"><Content /></div>
+  </article>
+</SiteLayout>

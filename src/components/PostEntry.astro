@@ -1,0 +1,13 @@
+---
+import { formatDate, isPublished, postUrl, type Post } from '../lib/posts';
+interface Props { post: Post }
+const { post } = Astro.props;
+---
+<article class="entry">
+  <h3 lang={post.data.lang}><a href={postUrl(post)}>{post.data.title}</a></h3>
+  <p class="meta">
+    <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+    · {post.data.lang.toUpperCase()}
+    {!isPublished(post) && <span> · {post.data.draft ? 'Draft' : 'Unpublished'}</span>}
+  </p>
+</article>

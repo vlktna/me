@@ -1,0 +1,95 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PostEntry from '../components/PostEntry.astro';
+import TalkEntry from '../components/TalkEntry.astro';
+import { getPosts } from '../lib/posts';
+const posts = await getPosts();
+---
+<SiteLayout home>
+
+      <section id="about" aria-labelledby="name">
+        <h1 id="name">Veronika Volokitina</h1>
+        <p class="lead">Software engineer at <a href="https://engineering.zalando.com/authors/veronika-volokitina.html">Zalando</a>. Berlin.</p>
+      </section>
+      <section class="index-section" id="experience" aria-labelledby="experience-title" data-reveal>
+        <h2 id="experience-title">Experience</h2>
+        <div class="entries">
+          <article class="entry">
+            <h3>Zalando</h3>
+            <p class="meta">Software Engineer · <time datetime="2024-08">Aug 2024</time> – Present</p>
+            <p class="entry-summary">Built Skipper’s admission webhook to reject invalid routes across 250+ Kubernetes clusters; automated WAF complaint monitoring.</p>
+          </article>
+          <article class="entry">
+            <h3>Solanteq</h3>
+            <p class="meta">Software Engineer · <time datetime="2021-01">Jan 2021</time> – <time datetime="2024-07">Jul 2024</time></p>
+            <p class="entry-summary">Built payment tracing, key-management systems, and reliable card-script delivery. Enabled encryption upgrades without interrupting transactions.</p>
+          </article>
+        </div>
+      </section>
+      <section class="index-section" id="talks" aria-labelledby="talks-title" data-reveal>
+        <h2 id="talks-title">Talks</h2>
+        <div class="entries">
+          <TalkEntry
+            title="Fail Fast Routing: Reusing the Ingress Controller as a Kubernetes Admission Webhook"
+            event="Cloud Native Days Austria · Sep 2026"
+          />
+          <TalkEntry
+            title="One Definition of Valid"
+            event="GopherCon UK · Aug 2026"
+            youtubeUrl="https://www.youtube.com/watch?v=UdsiZr9HEJI"
+          />
+          <TalkEntry
+            title="Route validation in Skipper: catching incidents before they happen"
+            event="Women Techmakers Berlin · Oct 2025"
+          />
+        </div>
+      </section>
+      <section class="index-section" id="writing" aria-labelledby="writing-title" data-reveal>
+        <h2 id="writing-title">Blog</h2>
+        <div class="entries">
+          {posts.slice(0, 3).map(post => <PostEntry post={post} />)}
+          <p><a href="/blog/">{posts.length ? 'All posts' : 'Read the blog'}</a></p>
+        </div>
+      </section>
+      <section class="index-section background" aria-labelledby="background-title" data-reveal>
+        <h2 id="background-title">Engineering<br>background</h2>
+        <div class="entries">
+          <article class="entry">
+            <h3>1st place · UFA_SUPERHERO</h3>
+            <p class="meta">IQ Park services track · Team Blurred Technologies · 2021 (age 19)</p>
+            <p class="meta">Online hackathon with teams across Russia · <a href="https://codenrock.com/blog/kejs-onlajn-hakaton-ufa_superhero-2021/">37 teams across all tracks</a></p>
+          </article>
+          <article class="entry">
+            <h3>Finalist · National Technology Initiative Olympiad</h3>
+            <p class="meta">Aerial robotics, university division · 2020 (age 18)</p>
+            <p class="meta">National, Russia · <a href="https://spb.academica.ru/novosti/novosti-vuzov/guap-pobeditel-finala-vserossijskoj-olimpiady-nti">9 teams in the track final</a></p>
+          </article>
+          <article class="entry">
+            <h3>Prizewinner · Zvezda Engineering Olympiad</h3>
+            <p class="meta">Engineering &amp; technology · Third-degree diploma · 2018 (age 16)</p>
+            <p class="meta">National school olympiad, Russia · <a href="https://www.susu.ru/ru/news/2018/02/02/startuet-zaklyuchitelnyy-etap-mnogoprofilnoy-inzhenernoy-olimpiady-zvezda">325,000+ entrants across all subjects</a></p>
+          </article>
+          <article class="entry">
+            <h3>1st place · WorldSkills Hi-Tech</h3>
+            <p class="meta">Aircraft assembly · 2017 (age 16)</p>
+            <p class="meta">National junior championship, Russia · <a href="https://ascon.ru/news/2017/11/16/askon-podderzhal-pyat-inzhenernyh-kompetencij-iv-nacionalnogo-chempionata-worldskills-hi-tech-2017/">126 juniors across all skills</a></p>
+          </article>
+          <article class="entry">
+            <h3>2nd place · JuniorSkills Hi-Tech</h3>
+            <p class="meta">Aircraft production &amp; maintenance · 2016 (age 15)</p>
+            <p class="meta">National championship, Russia · <a href="https://atf.surgu.ru/ru/news/honors/2016/11/125-uspeh-na-chempionate-juniorskills">168 juniors across all skills</a></p>
+          </article>
+        </div>
+      </section>
+      <section class="index-section" id="elsewhere" aria-labelledby="elsewhere-title" data-reveal>
+        <h2 id="elsewhere-title">Links</h2>
+        <div class="social-links">
+          <a href="https://www.instagram.com/vlktna/">Instagram</a>
+          <a href="https://www.linkedin.com/in/veronika-volokitina/">LinkedIn</a>
+          <a href="https://t.me/vlktna">Telegram</a>
+          <a href="https://github.com/vlktna">GitHub</a>
+          <a href="https://www.threads.com/@vlktna">Threads</a>
+        </div>
+      </section>
+
+</SiteLayout>

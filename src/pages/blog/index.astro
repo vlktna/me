@@ -1,0 +1,20 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import ExternalPosts from '../../components/ExternalPosts.astro';
+import PostEntry from '../../components/PostEntry.astro';
+import { getPosts } from '../../lib/posts';
+const posts = await getPosts();
+---
+<SiteLayout title="Blog — Veronika Volokitina" description="Articles and notes by Veronika Volokitina.">
+  <header class="page-heading"><h1>Blog</h1></header>
+  <section class="index-section" aria-labelledby="posts-title">
+    <h2 id="posts-title">On this site</h2>
+    <div class="entries">
+      {posts.length ? posts.map(post => <PostEntry post={post} />) : <p class="empty-state">No posts yet.</p>}
+    </div>
+  </section>
+  <section class="index-section" aria-labelledby="external-title">
+    <h2 id="external-title">Published elsewhere</h2>
+    <ExternalPosts />
+  </section>
+</SiteLayout>

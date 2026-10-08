@@ -1,0 +1,60 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  home?: boolean;
+  lang?: 'en' | 'ru';
+  article?: boolean;
+  unpublished?: boolean;
+}
+const {
+  title = 'Veronika Volokitina — Software Engineer',
+  description = 'Veronika Volokitina, a software engineer in Berlin. Experience, conference talks, writing, and links.',
+  home = false,
+  lang = 'en',
+  article = false,
+  unpublished = false,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#244edb" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:url" content={canonical} />
+    <link rel="canonical" href={canonical} />
+    {unpublished && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=manrope-v1" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="Veronika Volokitina — Blog" href="/rss.xml" />
+    {home && <script is:inline src="/script.js" defer></script>}
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="site">
+      <header class="topbar" lang="en">
+        <a class="wordmark" href={home ? '#about' : '/'} aria-label="Veronika Volokitina, home">vlktna</a>
+        <nav aria-label="Main navigation">
+          <a href={home ? '#about' : '/#about'} aria-current={home ? 'location' : undefined}>About</a>
+          <a href={home ? '#experience' : '/#experience'}>Experience</a>
+          <a href={home ? '#talks' : '/#talks'}>Talks</a>
+          <a href={home ? '#writing' : '/blog/'} aria-current={!home && Astro.url.pathname.startsWith('/blog') ? 'page' : undefined}>Blog</a>
+          <a href={home ? '#elsewhere' : '/#elsewhere'}>Links</a>
+        </nav>
+      </header>
+      <main id="main"><slot /></main>
+      <footer lang="en">
+        <span>© {new Date().getFullYear()} Veronika Volokitina</span>
+        <div class="footer-links"><a href="/rss.xml">RSS</a><a href={home ? '#about' : '#main'}>Back to top</a></div>
+      </footer>
+    </div>
+  </body>
+</html>
