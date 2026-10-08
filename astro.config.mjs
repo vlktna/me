@@ -10,7 +10,7 @@ function prefixMarkdownUrl(node, context) {
 }
 
 export default defineConfig({
-  site: process.env.SITE_URL || 'https://vlktna.v-volokitinaa.chatgpt.site',
+  site: process.env.SITE_URL || 'https://vlktna.com',
   base,
   output: 'static',
   trailingSlash: 'always',
