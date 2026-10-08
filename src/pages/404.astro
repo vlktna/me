@@ -1,7 +1,8 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { sitePath } from '../lib/urls';
 ---
 <SiteLayout title="Page not found — Veronika Volokitina" unpublished>
   <h1>Page not found</h1>
-  <p><a href="/">Back home</a> · <a href="/blog/">Read the blog</a></p>
+  <p><a href={sitePath()}>Back home</a> · <a href={sitePath('blog/')}>Read the blog</a></p>
 </SiteLayout>

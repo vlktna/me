@@ -1,4 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { sitePath } from './urls';
 
 export type Post = CollectionEntry<'blog'>;
 
@@ -14,7 +15,7 @@ export async function getPosts(includeUnpublished = import.meta.env.DEV) {
 }
 
 export function postUrl(post: Post) {
-  return `/blog/${post.id.split('/').map(encodeURIComponent).join('/')}/`;
+  return sitePath(`blog/${post.id.split('/').map(encodeURIComponent).join('/')}/`);
 }
 
 export function formatDate(date: Date, lang = 'en') {

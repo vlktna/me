@@ -29,4 +29,8 @@ The site uses locally hosted Manrope. Its license is in `public/fonts/OFL.txt`.
 
 The main branch is `master`. GitHub Actions installs locked dependencies and builds the site on pushes and pull requests to `master`.
 
-Automatic deployment is pending the hosting choice. The existing Sites copy is published through Codex; its credentials are not stored in this repository. The local `vlktna/` checkout belongs to that copy and is ignored by this repository.
+Automatic deployment is pending the hosting choice. A GitHub Pages workflow is prepared for `https://vlktna.github.io/me/` and remains disabled until the repository variable `PAGES_ENABLED` is set to `true`. To activate it, enable Pages with GitHub Actions as its source, set that variable, then run the workflow or push to `master`. It builds the website and publishes only after a successful build, using GitHub's temporary workflow token.
+
+`SITE_URL` and `BASE_PATH` configure the build for its host. Navigation, assets, Markdown links, and RSS include the deployment path.
+
+The existing Sites copy is published through Codex; its credentials are not stored in this repository. The local `vlktna/` checkout belongs to that copy and is ignored by this repository.

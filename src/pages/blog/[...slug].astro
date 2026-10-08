@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { formatDate, getPosts, isPublished, type Post } from '../../lib/posts';
+import { sitePath } from '../../lib/urls';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -20,7 +21,7 @@ const unpublished = !isPublished(post);
   </Fragment>
   <article class="post">
     <header class="post-heading">
-      <a class="back-link" href="/blog/" lang="en">All posts</a>
+      <a class="back-link" href={sitePath('blog/')} lang="en">All posts</a>
       {unpublished && <p class="draft-notice" lang="en">{post.data.draft ? 'Draft' : 'Unpublished'} · Local preview only</p>}
       <h1>{post.data.title}</h1>
       <p class="meta"><time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, post.data.lang)}</time> · Veronika Volokitina</p>

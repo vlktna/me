@@ -1,4 +1,6 @@
 ---
+import { sitePath } from '../lib/urls';
+
 interface Props {
   title?: string;
   description?: string;
@@ -31,29 +33,29 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonical} />
     <link rel="canonical" href={canonical} />
     {unpublished && <meta name="robots" content="noindex, nofollow" />}
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=manrope-v1" />
-    <link rel="stylesheet" href="/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="Veronika Volokitina — Blog" href="/rss.xml" />
-    {home && <script is:inline src="/script.js" defer></script>}
+    <link rel="icon" type="image/svg+xml" href={sitePath('favicon.svg?v=manrope-v1')} />
+    <link rel="stylesheet" href={sitePath('style.css')} />
+    <link rel="alternate" type="application/rss+xml" title="Veronika Volokitina — Blog" href={sitePath('rss.xml')} />
+    {home && <script is:inline src={sitePath('script.js')} defer></script>}
     <slot name="head" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
     <div class="site">
       <header class="topbar" lang="en">
-        <a class="wordmark" href={home ? '#about' : '/'} aria-label="Veronika Volokitina, home">vlktna</a>
+        <a class="wordmark" href={home ? '#about' : sitePath()} aria-label="Veronika Volokitina, home">vlktna</a>
         <nav aria-label="Main navigation">
-          <a href={home ? '#about' : '/#about'} aria-current={home ? 'location' : undefined}>About</a>
-          <a href={home ? '#experience' : '/#experience'}>Experience</a>
-          <a href={home ? '#talks' : '/#talks'}>Talks</a>
-          <a href={home ? '#writing' : '/blog/'} aria-current={!home && Astro.url.pathname.startsWith('/blog') ? 'page' : undefined}>Blog</a>
-          <a href={home ? '#elsewhere' : '/#elsewhere'}>Links</a>
+          <a href={home ? '#about' : sitePath('#about')} aria-current={home ? 'location' : undefined}>About</a>
+          <a href={home ? '#experience' : sitePath('#experience')}>Experience</a>
+          <a href={home ? '#talks' : sitePath('#talks')}>Talks</a>
+          <a href={home ? '#writing' : sitePath('blog/')} aria-current={!home && Astro.url.pathname.startsWith(sitePath('blog/')) ? 'page' : undefined}>Blog</a>
+          <a href={home ? '#elsewhere' : sitePath('#elsewhere')}>Links</a>
         </nav>
       </header>
       <main id="main"><slot /></main>
       <footer lang="en">
         <span>© {new Date().getFullYear()} Veronika Volokitina</span>
-        <div class="footer-links"><a href="/rss.xml">RSS</a><a href={home ? '#about' : '#main'}>Back to top</a></div>
+        <div class="footer-links"><a href={sitePath('rss.xml')}>RSS</a><a href={home ? '#about' : '#main'}>Back to top</a></div>
       </footer>
     </div>
   </body>

@@ -3,6 +3,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import PostEntry from '../components/PostEntry.astro';
 import TalkEntry from '../components/TalkEntry.astro';
 import { getPosts } from '../lib/posts';
+import { sitePath } from '../lib/urls';
 const posts = await getPosts();
 ---
 <SiteLayout home>
@@ -48,7 +49,7 @@ const posts = await getPosts();
         <h2 id="writing-title">Blog</h2>
         <div class="entries">
           {posts.slice(0, 3).map(post => <PostEntry post={post} />)}
-          <p><a href="/blog/">{posts.length ? 'All posts' : 'Read the blog'}</a></p>
+          <p><a href={sitePath('blog/')}>{posts.length ? 'All posts' : 'Read the blog'}</a></p>
         </div>
       </section>
       <section class="index-section background" aria-labelledby="background-title" data-reveal>
