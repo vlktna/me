@@ -22,7 +22,7 @@ nav a{display:inline-block;color:var(--muted);font-size:.875rem;line-height:1.25
 nav a[aria-current],nav a:hover{color:var(--blue)}
 nav a[aria-current]{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:8px}
 #about{max-width:42.5rem;margin-bottom:var(--space-20)}
-h1{width:fit-content;max-width:100%;font-size:2.25rem;line-height:2.5rem;font-weight:600;letter-spacing:-.04em;color:#000;background:linear-gradient(to right,#000,#666);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:var(--space-4)}
+h1{width:fit-content;max-width:100%;padding-bottom:.15em;font-size:2.25rem;line-height:2.5rem;font-weight:600;letter-spacing:-.04em;color:#000;background:linear-gradient(to right,#000,#666);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:var(--space-4)}
 .lead{font-size:1.125rem;line-height:1.75rem}
 .bio{margin-top:var(--space-4);color:var(--muted)}
 .index-section{display:grid;grid-template-columns:6rem minmax(0,1fr);gap:var(--space-8);margin-bottom:var(--space-16)}

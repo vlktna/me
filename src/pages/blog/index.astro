@@ -10,7 +10,7 @@ const posts = await getPosts();
   <section class="index-section" aria-labelledby="posts-title">
     <h2 id="posts-title">On this site</h2>
     <div class="entries">
-      {posts.length ? posts.map(post => <PostEntry post={post} />) : <p class="empty-state">No posts yet.</p>}
+      {posts.length ? posts.map(post => <PostEntry post={post} />) : <p class="empty-state">No posts yet</p>}
     </div>
   </section>
   <section class="index-section" aria-labelledby="external-title">
