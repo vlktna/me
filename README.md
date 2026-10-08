@@ -10,6 +10,6 @@ npm run dev
 npm run build
 ```
 
-Posts live in `src/content/blog/`. See [BLOGGING.md](BLOGGING.md) for writing and publishing.
+Posts live in `src/content/blog/`.
 
 CI runs on `master`. Automatic deployment is not enabled yet.
