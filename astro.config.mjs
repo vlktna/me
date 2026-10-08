@@ -3,7 +3,6 @@ import { satteri } from '@astrojs/markdown-satteri';
 
 const base = `/${(process.env.BASE_PATH || '').split('/').filter(Boolean).join('/')}`;
 
-// Keep root-relative Markdown links and images working under a project subpath.
 function prefixMarkdownUrl(node, context) {
   if (base !== '/' && /^\/(?!\/)/.test(node.url)) {
     context.setProperty(node, 'url', base + node.url);
