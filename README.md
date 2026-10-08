@@ -2,6 +2,8 @@
 
 A personal website and Markdown blog built with [Astro](https://astro.build/).
 
+[Website](https://vlktna.v-volokitinaa.chatgpt.site/)
+
 Use Node.js 24 LTS.
 
 ```sh
